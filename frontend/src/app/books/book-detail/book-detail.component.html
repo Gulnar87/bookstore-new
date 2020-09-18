@@ -1,0 +1,93 @@
+<div class="jumbotron jumbotron-fluid" style="background-image: url('https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/sunset-palm-trees-beach-water-panoramic-images.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-6 white-text">
+				<h1 class="display-5"> {{ book.title }} </h1>    
+                <h3 class="display-5"> {{ book.author}} </h3>  
+            </div>
+<!--             <div class="col-md-12" >
+            	<div class="btn-group" role="group" appDropdown>
+            		<button id="btnGroupDrop1" type="button" class="btn peach-gradient dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            			<fa-icon [icon]="faCogs"></fa-icon> Manage <span class="sr-only"></span>
+            		</button>
+            		<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            			<a class="dropdown-item" style="cursor: pointer;" (click)="onEditBook()">
+            			  <fa-icon [icon]="faEdit"></fa-icon> Edit 
+			            </a>
+			            <a class="dropdown-item" style="cursor: pointer;" (click)="onDeleteBook()">
+			            	<fa-icon [icon]="faTrashAlt"></fa-icon> Delete
+			            </a>
+			        </div>
+			    </div>	
+			</div> -->
+        </div>
+    </div>
+</div>
+<div class="row">
+	<div class="col-12">
+		<div class="row book-row">
+			<div class="col-md-3 col-8 pic"> 
+			 <img [src]="book.imagePath"
+		        alt="{{ book.imagePath }}" 
+		        class="img-fluid book-img">  
+		    </div>
+		    <div class="col-md-6 col-12">
+				<div class="description"> 
+					<h4 class="font-weight-bold"> {{ book.title }} </h4>
+		            <h5  class=" text-muted">  by {{ book.author }} </h5>
+		            <p class="content" [ngClass]="{less: !isCollapsed}" style="width: 100%" > {{ book.description }}</p>	
+		            <div class="text-center"> 
+		                <button class="btn btn-outline-warning waves-effect btn-sm readMore" 
+                         type="button" aria-controls="collapseExample" 
+                         (click)="this.isCollapsed = !this.isCollapsed;" > {{ !isCollapsed? 'Read more' : 'Read less' }}
+		                     <span *ngIf="!isCollapsed"><fa-icon [icon]="faCaretDown"></fa-icon></span>
+                             <span *ngIf="isCollapsed"><fa-icon [icon]="faCaretUp"></fa-icon></span>
+                        </button> 
+                    </div>
+		        </div>
+		   </div>
+		   <div class="col-md-3 mb-4 d-flex align-items-stretch">
+		   	  <div class="card text-center" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/pricing-table%20(6).jpg');">
+		   		<div class=" card-header">
+		   			<h1 class="card-title">
+		   			  {{ book.price | currency: 'EUR'}} 
+		   			</h1> 
+		   			<p class="card-text" > BUY NOW and save 20% for the next purchase.</p>
+		   			<button 
+			         type="button" mdbWavesEffect
+			         class="btn peach-gradient addtoCart" (click)="onAddToShoppingList()">
+			          <fa-icon [icon]="faShoppingCart"></fa-icon>  
+			         Add to Card	
+			        </button>
+			    </div>
+			    <div class="card-body" style="height: 300px;">
+			    	<p class="card-text">  
+			    		Contact to buy: 
+			    		<br>  {{ book.user.fullName }} 
+			    		<br> {{ book.user.phoneNumber }} 
+			    		<br> {{ book.user.emailAddress }} 
+			    		<br> {{book.user.city}} 
+			    	</p>
+			    </div>
+			    <div class="card-footer text-muted white-text">
+			    	<p class="mb-0">
+			    		<a> <fa-icon [icon]="faShare"></fa-icon>   Share </a>
+			    	<!--  Add share button for facebook -->
+			    		
+			        </p>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+ 

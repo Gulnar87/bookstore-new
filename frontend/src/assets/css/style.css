@@ -1,0 +1,11 @@
+body {
+	background-color: #f9f9f9;
+	font-family: 'Source Serif Pro', serif;
+}
+
+.swiper-pagination-bullet-active {
+  background: #494784;
+}
+
+
+

@@ -1,0 +1,86 @@
+
+<div class="row">
+	<div class="col-11 col-sm-9 col-md-6 col-lg-6 card-col">
+		<div class="card px-sm-5">
+         <a class="navbar-brand" href="#">
+         <img src="assets/books-stack1.png" width="40" height="40" alt="logo">
+          book<span>S</span>tore
+         </a>
+			<h3 class="text-center login-title"> Create an Account</h3>
+		   <form (ngSubmit)="onSignup()" #f="ngForm" class="px-xl-5">
+			   <div class="form-group"> 
+          <div class="alert alert-warning" role="alert" *ngIf="this.authService.signupError"><fa-icon [icon]="faExclamationTriangle"></fa-icon>The email address is already in use by another account!
+          </div>
+				   <label for="name"> <fa-icon [icon]="faUser"></fa-icon> Full name <span> * </span> </label>
+				   <input type="name" 
+                class="form-control" 
+                id="name" 
+                placeholder="" 
+                name="name" 
+                ngModel 
+                required 
+                #name="ngModel"> 
+				   <small style="color: #d87d15;" 
+                class="form-text" 
+                *ngIf="!this.name.valid && this.name.touched"> This field is required! 
+               </small>
+            </div>
+            <div class="form-group">
+            	<label for="email"> <fa-icon [icon]="faAt"></fa-icon> Email <span> * </span> </label> 
+            	<input type="email"
+                 class="form-control" 
+                 id="email"  placeholder= "" 
+                 ngModel 
+                 name="email" 
+                 required 
+                 email 
+                 #email="ngModel"> 
+            	<small style="color: #d87d15;" 
+                class="form-text" 
+                *ngIf="!email.valid && email.touched"> Please provide a valid email address!
+               </small>
+            </div>
+            <div class="form-group"> 
+            	<label for="password"> <fa-icon [icon]="faAt"></fa-icon>Password <span> * </span></label>
+            	   <input type="password" 
+                    class="form-control" 
+                    id="password" 
+                    placeholder="" 
+                    name="password" 
+                    ngModel 
+                    required 
+                    #password="ngModel" 
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{6,}$"> 
+                  <small style="color: #d87d15;" 
+                   class="form-text" *ngIf="!password.valid && password.touched"> Please provide a password!
+                  </small>
+                  <small style="color: #d87d15;" 
+                   class="form-text" 
+                   *ngIf="password.errors?.pattern" > Complexity requirement not met. Length should have a minimum of 6 characters and include 1 lowercase, 1 uppercase, and 1 number! 
+                  </small>    
+            </div>
+            <div class="form-group"> 
+              <label for="image">  <fa-icon [icon]="faImage"></fa-icon> Add photo URL </label>
+                 <input 
+                    type="text" 
+                    class="form-control" 
+                    id="image"
+                    name="imagePath" 
+                    ngModel 
+                    #imagePath> 
+            </div>
+            <button type="submit" class="btn btn-warning btn-block" [disabled]="!f.valid"> Sign Up </button>
+            <hr> 
+		   </form>
+	     
+		   <p class="px-xl-5"> Already have an account?  
+			   <a routerLink="/signin"> Log In </a>
+		   </p>
+      </div>
+   </div>
+</div>
+
+
+
+
+

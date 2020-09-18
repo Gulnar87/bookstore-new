@@ -1,0 +1,32 @@
+<div class="jumbotron jumbotron-fluid" style="background-image: url('https://www.desktopbackground.org/download/o/2013/06/27/598686_wallpapers-old-paper-dutch-2560x1440_2560x1440_h.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <div class="container">
+        <div class="row" >
+            <div class="col-12 white-text">
+                <h1 class="title-head"> Our Wardrobe of Literature  </h1> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row book-list">
+  <app-book-item class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 px-1"
+      *ngFor="let bookEl of books | filter: {title: filterServ.getFilter(), author: filterServ.getFilter() }; let i = index;"
+      [book]="bookEl"
+      [index]="bookEl.id"
+      style="cursor: pointer" 
+      > 
+  </app-book-item>   
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    
+     

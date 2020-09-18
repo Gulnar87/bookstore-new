@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  bookstoredb:
+    image: mysql:5.7.24
+    container_name: mysql
+    environment: 
+    - MYSQL_ROOT_PASSWORD=abc12345
+    - MYSQL_DATABASE=bookstore_db
+    - MYSQL_USER=root
+    - MYSQL_PASSWORD=abc12345
+    - MYSQL_ROOT_HOST=% 
+    volumes:
+      - bookstoredb_data:/var/lib/mysql
+  adminer:
+       image: adminer
+       links:
+       - bookstoredb:bookstoredb
+       ports:
+       - 5435:8080
+volumes: 
+  bookstoredb_data:

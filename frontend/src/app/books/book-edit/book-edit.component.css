@@ -1,0 +1,181 @@
+.card {
+   margin-top: 50px;
+   /*box-shadow: 0px 5px 20px #666;*/
+   box-shadow: 0px 0px 5px #666;
+/*   padding-right: 20px;
+   padding-left: 20px;*/
+   padding: 40px;
+   font-family: 'Source Serif Pro', serif;	    
+   color: #252728;
+   margin-bottom: 30px;
+}
+
+label {
+	font-weight: 700;
+	font-size: 18px;
+}
+
+.title-head {
+  font-size: 50px;
+} 
+
+
+input[type="text"], 
+input[type="email"],
+input[type="number"], input[type="file" i],
+textarea, select, 
+.custom-file-label, 
+.input-group > .input-group-append > .input-group-text {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  transition: color 0.15s ease-in-out, 
+  background-color 0.15s ease-in-out, 
+  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+ /* border: 0px solid white;*/
+  border-radius: 0.125rem;
+
+  /* cursor: pointer;*/
+  /* border: none;*/
+}
+
+input[type="file"], select {
+  cursor: pointer;
+}
+
+
+.custom-file-input:lang(en)~.custom-file-label::after {
+  font-family: "FontAwesome";
+  content: "\f093   Browse" ;
+  background-color: transparent;
+  color: #494784;
+  font-weight: 400;
+
+}
+
+.custom-file-input:hover~.custom-file-label::after {
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  outline: 0;
+  border-radius: 0.125rem;
+}
+
+
+
+
+:host >>> .popover {
+  background-color: #dcdced;
+  color: #494784;
+ 
+
+}
+:host >>> .popover>.arrow:after  {
+  border-top-color: red; 
+}
+
+
+.fa-info-circle {
+  cursor: help;
+}
+
+label span {
+  color: red;
+}
+
+
+.fa-info-circle, .fa-upload{
+  color: #494784;
+  /*color: #ff8800;*/
+}
+
+
+.card-col {
+  margin: 20px auto;
+}
+
+
+
+.card {
+  margin-top: 0;
+}
+
+.card-col {
+   margin-top: 0;
+   margin-bottom: 0;
+}
+
+
+/********** Extra Large devices only **********/
+@media (min-width: 1200px) {
+
+
+}
+
+
+
+/********** Large devices only **********/
+@media (min-width: 992px) and (max-width: 1199px) {
+
+
+
+
+
+}
+     
+
+
+
+/********** Medium devices only **********/
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+
+
+
+
+}
+
+
+
+/********** Small devices only **********/
+@media (min-width: 576px) and (max-width: 767px) {
+
+.title-head {
+  font-size: 40px;
+}
+
+}
+
+
+
+/********** Extra Small Devices Only **********/
+@media (min-width: 480px) and  (max-width: 575px) {
+
+
+
+.title-head {
+  font-size: 30px;
+}
+
+
+}
+
+/********** Super extra small devices Only :-)  **********/
+@media (min-width: 320px) and (max-width: 479px) {
+
+
+.title-head {
+  font-size: 25px;
+
+}
+
+.form-group {
+  margin-bottom: 5px;
+}
+
+
+
+
+
+}
+
+
+
+

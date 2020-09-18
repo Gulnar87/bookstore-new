@@ -1,0 +1,263 @@
+<div class="jumbotron jumbotron-fluid" style="background-image: url('http://widefon.com/_ld/200/17684689.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+  <div class="container">
+    <div class="row" >
+      <div class="col-12 white-text">
+        <h1 class="title-head"> Post a Book to Sell  </h1>    
+      </div>
+    </div>
+  </div>
+</div>
+ <div class="row row-form">
+  <div class="col-11 col-sm-10 card-col">
+    <div class="card">
+    
+      <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+        <div class="form-group row">
+          <label for="name" class="col-8 col-md-4 col-lg-2 col-form-label" >Name <span> * </span></label>
+          <div class="form-group col-sm-9 col-md-6 col-lg-4">   
+            <div class="form-group">
+              <input 
+              [ngClass]="{'is-invalid': submitted && f.name.invalid, 'is-valid': submitted && f.name.valid}"
+              type="text" 
+              class="form-control" 
+              id="name" 
+              placeholder=""
+              formControlName="name">
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required "><fa-icon [icon]="faExclamationTriangle"></fa-icon> Name is required</div>
+                <div *ngIf="f.name.errors.nameIsForbidden"><fa-icon [icon]="faExclamationTriangle"></fa-icon> Please choose a decent name. </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="email" class="col-8 col-md-4 col-lg-2 col-form-label">Email <span>* </span>
+          </label>
+          <div class="form-group col-sm-9 col-md-6 col-lg-4"> 
+            <div class="form-group">
+              <input [ngClass]="{'is-invalid': submitted && f.email.invalid, 'is-valid': submitted && f.email.valid}"
+               type="email" 
+               class="form-control" 
+               id="email"
+               formControlName="email"
+               aria-describedby="emailHelp" 
+               placeholder="">
+               <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Email is required!</div>
+                <div *ngIf="f.email.errors.email"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Email must be a valid email address! </div>
+              </div>      
+            </div>  
+          </div>
+        </div>
+        <div class="row">
+          <label for="phone" class="col-8 col-md-4 col-lg-2 col-form-label">Phone <span> * </span></label>
+          <div class="form-group col-sm-9 col-md-6 col-lg-4" formArrayName="phone"> 
+            <div class="form-group"*ngFor="let otherCont of getControls1(); let i =index;">
+              <input [ngClass]="{'is-invalid': submitted && f.phone.at(0).invalid, 'is-valid': submitted && f.phone.at(0).valid}"
+              type="number" 
+              class="form-control" 
+              id="phone" 
+              [formControlName]="i"
+              placeholder="">
+              <div *ngIf="submitted && f.phone.at(0).errors" class="invalid-feedback">
+                <div *ngIf="f.phone.at(0).errors.required "><fa-icon [icon]="faExclamationTriangle"></fa-icon>Phone number is required! </div>
+              </div>  
+            </div>
+          </div>
+          <div class="form-group col-3 col-md-2 col-lg-4" style="padding: 6px">  
+            <span id="popoverPhone" popover="Add additional phone number." 
+             (click)="onAddPhone()" 
+             style="color:#494784"
+             triggers="mouseenter:mouseleave" placement="right"> 
+              <fa-icon [icon]="faPlusCircle" style="font-size: 20px"></fa-icon>
+            </span>   
+          </div>
+        </div>
+        <div class="row">
+          <label for="city" class="col-8 col-md-4 col-lg-2 col-form-label"> City <span> * </span>
+          </label>
+          <div class="form-group col-sm-9 col-md-6 col-lg-4"> 
+            <div class="form-group">
+              <select [ngClass]="{ 'is-invalid': submitted && f.city.invalid, 'is-valid': submitted && f.city.valid }"
+                class="form-control" 
+                id="city"
+                formControlName="city">
+                <option *ngFor="let city of cities" [value]="city"> {{ city }}</option>
+              </select>
+              <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                <div *ngIf="f.city.errors.required "><fa-icon [icon]="faExclamationTriangle"></fa-icon>Please select a city! </div>
+              </div> 
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="title" class="col-8 col-md-4 col-lg-2 col-form-label"> Book Title <span> * </span> </label>
+          <div class="form-group col-sm-11 col-md-8 col-lg-6"> 
+            <div class="form-group">
+             <input 
+             [ngClass]="{ 'is-invalid': submitted && f.title.invalid, 'is-valid': submitted && f.title.valid }"
+              type="text"
+              class="form-control" 
+              id="title"
+              formControlName="title"
+              placeholder="">
+               <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                <div *ngIf="f.title.errors.required "><fa-icon [icon]="faExclamationTriangle"></fa-icon>Please indicate the title of the book! </div>
+              </div> 
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="author" class="col-8 col-md-4 col-lg-2 col-form-label"> Author <span> * </span></label>
+          <div class="form-group col-sm-11 col-md-8 col-lg-6"> 
+            <div class="form-group">
+              <input 
+              [ngClass]="{ 'is-invalid': submitted && f.author.invalid, 'is-valid': submitted && f.author.valid }"
+              type="text" 
+              class="form-control" 
+              id="author" 
+              placeholder=""
+              formControlName="author">
+               <div *ngIf="submitted && f.author.errors" class="invalid-feedback">
+                <div *ngIf="f.author.errors.required "><fa-icon [icon]="faExclamationTriangle"></fa-icon>Please indicate the author! </div>
+              </div> 
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="description" class="col-8 col-md-4 col-lg-2 col-form-label"> Description  
+            <span class="" popover="Providing some description for the book fascinates  buyers."
+            triggers="mouseenter:mouseleave" placement="bottom"> 
+            <fa-icon [icon]="faInfoCircle"></fa-icon></span>
+          </label>
+          <div class="form-group col-sm-11 col-md-8 col-lg-6"> 
+            <div class="form-group">
+              <textarea 
+              class="form-control" 
+              id="description"
+              formControlName="description" 
+              rows="8">
+              </textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="image" class="col-8 col-md-4 col-lg-2 col-form-label"> Add photo <span> * </span> 
+          </label>
+          <div class="form-group col-md-7 col-lg-4">
+            <div class="form-group">
+              <div class="custom-file">
+                <input 
+                  [ngClass]="{'is-invalid': submitted && f.imagePath.invalid, 'is-valid': submitted && f.imagePath.valid }"
+                  type="file" 
+                  class="custom-file-input" 
+                  id="image"
+                  formControlName="imagePath" 
+                  (change)="onSelectFile($event)">
+                  <label class="custom-file-label" for="image"></label>
+                  <div *ngIf="submitted && f.imagePath.errors" class="invalid-feedback">
+                    <div *ngIf="f.imagePath.errors.required">
+                    <fa-icon [icon]="faExclamationTriangle"></fa-icon>Please choose a cover picture for the book! 
+                    </div>  
+                   </div> 
+                 </div>  
+               <br>
+              <div style="margin-top: 10px;">
+              <img 
+               class="img-fluid mx-auto d-block" style="max-width: 100%;" 
+               [src]="imageSrc|| 'http://placehold.it/5/fff?text=+'" alt="your image">
+              </div>  
+              <label for="imagePath"> Or Add Image URL</label>
+              <input 
+              type="text" 
+              class="form-control-file" 
+              id="image"
+              formControlName="imagePath" 
+              #imagePath> 
+              <div class="row"> 
+                <div class="col-12">
+                 <img 
+                  class="img-fluid mx-auto d-block" style="max-width: 100%" 
+                  [src]="imagePath.value">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="price" class="col-8 col-md-4 col-lg-2 col-form-label">Price <span> * </span></label>
+          <div class="form-group col-8 col-sm-6 col-md-4 col-lg-4">
+            <div class="input-group">
+              <input 
+              [ngClass]="{ 'is-invalid': submitted && f.price.invalid, 'is-valid': submitted && f.price.valid }"
+              type="number" 
+              class="form-control" 
+              id="price" 
+              placeholder="" 
+              aria-describedby="inputGroupPrepend2" 
+              formControlName="price">
+              <div class="input-group-append">
+                <span class="input-group-text" id="inputGroupPrepend2"> EUR </span>
+              </div>
+              <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                <div *ngIf="f.price.errors.required ">
+                  <fa-icon [icon]="faExclamationTriangle"></fa-icon> The buyer needs to know the price! 
+                </div>
+              </div> 
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="other" class="col-8 col-md-4 col-lg-2 col-form-label">  </label>
+          <div class="form-group col-sm-11 col-md-8 col-lg-6" formArrayName="other"> 
+            <a class="btn btn-link waves-effect btn-sm" (click)="onAddField()"> Add a new field
+            </a>
+            <div class="form-group"
+            *ngFor="let otherControl of getControls(); let i =index;">
+              <textarea
+              type="text" 
+              class="form-control" 
+              [formControlName]="i"
+               rows="4"
+               placeholder="Add your comments here" >
+               </textarea> 
+            </div> 
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-8 col-lg-6" >
+            <div class="form-check">
+              <input 
+              class="form-check-input is-invalid" 
+              type="checkbox" 
+              id="gridCheck"
+              formControlName="terms" 
+              >
+              <label class="form-check-label" for="gridCheck" style="color: black">
+                I agree to the <a href="#">Terms and Conditions</a>   
+              </label>
+              <div *ngIf="submitted && f.terms.errors" class="invalid-feedback">
+                <div *ngIf="f.terms.errors.required "><fa-icon [icon]="faExclamationTriangle"></fa-icon>You must agree before submitting! </div>
+              </div>  
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <button 
+            type="" 
+            class="btn btn-warning btn-md" 
+            style="margin-right: 10px;" 
+            > Add
+            </button>
+            <button type="" class="btn btn-outline-warning btn-md" (click)="onCancel()"> Cancel 
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+

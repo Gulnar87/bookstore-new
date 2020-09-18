@@ -1,0 +1,27 @@
+
+<div class="card" >
+	<a [routerLink]="[index]">
+	<span class="img">	
+		<img class="card-img img-fluid"[src]="book.imagePath" alt="{{ book.title}}" style="display: block; width: 60%;" height="400">
+    </span>
+	</a>
+	<div class="card-body px-0 pb-0 text-center">
+	    <h5 class="card-title font-weight-bold"> {{ book.title }}</h5>
+		<h5 class="card-title"> {{ book.author }}</h5>
+		<hr width="99" class="mt-1 mb-1">
+	    <p class="card-text-price mb-0"> Paperback: <span> {{ book.price | currency: 'EUR'  }} </span></p> 
+	    <div type="button" class="addtoCart" (click)="onAddToShoppingList()">  
+		   <fa-icon [icon]="faCartPlus" class="orange-text"></fa-icon>    	
+	    </div>
+	  	<p class="rating mb-0"> 
+	    	<bar-rating class="d-flex justify-content-center" [(rate)]="faRate" [max]="5" [theme]="'fontawesome-o'" [readOnly]="false">   
+	    	</bar-rating>    
+	    	<span class="d-flex justify-content-end" id="rate">  {{ faRate }} </span> 	
+	    </p>   
+	</div>   
+  </div> 
+
+      
+
+
+

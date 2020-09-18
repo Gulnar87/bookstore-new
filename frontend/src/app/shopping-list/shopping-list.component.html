@@ -1,0 +1,114 @@
+<div class="jumbotron jumbotron-fluid" style="background-image: url('http://mdbootstrap.com/img/Photos/Others/images/91.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <div class="container">
+        <div class="row" >
+            <div class="col-12 white-text">
+                <h1 class="title-head"> Shopping Card </h1> 
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row panel-row">
+    <div class="col-lg-8 col-xl-7">
+        <div class="card grey lighten-4" *ngFor="let book of books | filter: {title: filterServ.getFilter(), author: filterServ.getFilter() }; let i = index;">   
+        <!--     [routerLink]="[i]"    -->
+        
+            <div class="row">
+                <div class="col-12 col-sm-3 col-lg-3 col-xl-3 col-img">
+                    <img class="card-img img-fluid " [src]="book.imagePath"  alt="{{book.title}}">
+                </div>
+                <div class="col-12 col-sm-7 col-lg-6 col-xl-6 card-body text-left second-col pb-0 mb-0">  
+                   <div class="row row-text">
+                       <div class="col-12"> 
+                          <h4 class="card-title font-weight-bold"> {{ book.title }} </h4>
+                          <h5 class="card-title  text-muted">  by {{ book.author }}</h5>
+                        </div>
+                        <div class="col-12 col-sm-12">
+                            <div class="flex-row">
+                                <ul class="deep-purple-text list-unstyled d-flex flex-sm-row flex-column">
+                                    <li class="list-inline-item pl-sm-0" (click)="onRemove(i)"><a class="btn-link"> Remove</a></li> 
+                         <!--        <i class="a-icon a-icon-text-separator " role="img"></i> -->
+                               <!--      <li class="list-inline-item pl-sm-2 " ><a class="btn-link"> Add to wishlist</a></li>  -->
+                     <!--            <i class="a-icon a-icon-text-separator " role="img"></i> -->
+                                     <li class="list-inline-item pl-sm-2 "><a class="btn-link"> Read More</a></li>
+                                </ul>
+                            <!--   <app-shopping-edit></app-shopping-edit> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-2 col-lg-3 col-xl-3 price float-right pt-sm-3">
+                    <div class="font-weight-bold"> 
+                        <span> {{book.price | currency: 'EUR' }}</span>
+                        <fa-icon [icon]="faTags"></fa-icon> 
+                    </div>
+                </div>
+            </div> <!-- row -->
+        </div> <!-- card  -->
+    </div> <!-- column first -->
+    <div class="col-lg-4 col-xl-5 mb-4 align-items-stretch">
+        <div class="card grey lighten-4">
+            <div class="card-header text-left">
+                <div class="card-title"> 
+                    <h4 class="text-muted pb-1"> {{ this.books.length }} Books in Cart </h4> 
+                    <h4 class="text-muted pb-1"> Total: </h4>
+                    <h1 style="color:#ff3547;"> {{ this.total | currency: 'EUR' }} </h1>
+                </div>
+                <button type="button" mdbBtn color="danger" mdbWavesEffect block="true" size="lg"> Checkout </button> 
+            </div>
+            <div class="card-body" >
+            <!--Carousel Wrapper-->
+                <mdb-carousel [isControls]="false" class="carousel slide carousel-fade" [animation]="'fade'">
+                    <!--First slide-->
+                    <mdb-carousel-item>
+                        <div class="view w-100">
+                            <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg" alt="First slide">
+                            <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+                        </div>
+                        <div class="carousel-caption">
+                            <!--    <h3 class="h3-responsive">Light mask</h3> -->
+                            <p> “Reading is a discount ticket to everywhere.” – Mary Schmich </p>
+                        </div>
+                    </mdb-carousel-item>
+                    <!--/First slide-->
+                    <!--Second slide-->
+                    <mdb-carousel-item>
+                        <div class="view w-100">
+                            <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).jpg" alt="Second slide">
+                            <div class="mask rgba-black-strong waves-light" mdbWavesEffect></div>
+                        </div>
+                        <div class="carousel-caption">
+                            <!-- <h3 class="h3-responsive">Strong mask</h3> -->
+                            <p>“If you are going to get anywhere in life you have to read a lot of books.” – Roald Dahl</p>
+                        </div>
+                    </mdb-carousel-item>
+                     <!--/Second slide-->
+                     <!--Third slide-->
+                    <mdb-carousel-item>
+                        <div class="view w-100">
+                            <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).jpg" alt="Third slide">
+                            <div class="mask rgba-black-slight waves-light" mdbWavesEffect></div>
+                        </div>
+                        <div class="carousel-caption">
+                            <!-- <h3 class="h3-responsive">Slight mask</h3> -->
+                            <p> “Reading is essential for those who seek to rise above the ordinary.” – Jim Rohn</p>
+                        </div>
+                    </mdb-carousel-item>
+                    <!--/Third slide-->
+                </mdb-carousel>
+            </div>
+        </div>
+    </div>
+</div> <!-- row -->
+
+
+ 
+       
+
+                  
+          
+
+
+
+
+
+ 

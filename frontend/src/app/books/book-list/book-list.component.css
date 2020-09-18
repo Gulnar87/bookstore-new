@@ -1,0 +1,88 @@
+.book-list {
+  margin-right: 30px;
+  margin-left: 30px;
+/*  margin-top: 50px;*/
+}
+
+
+.title-head {
+  font-size: 50px;
+} 
+
+/********** Extra Large devices only **********/
+@media (min-width: 1200px) {
+
+
+}
+
+
+
+/********** Large devices only **********/
+@media (min-width: 992px) and (max-width: 1199px) {
+
+
+
+
+
+}
+     
+
+
+
+/********** Medium devices only **********/
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+
+
+
+
+}
+
+
+
+/********** Small devices only **********/
+@media (min-width: 576px) and (max-width: 767px) {
+
+.title-head {
+  font-size: 40px;
+}
+
+}
+
+
+
+/********** Extra Small Devices Only **********/
+@media (min-width: 480px) and  (max-width: 575px) {
+
+
+
+.title-head {
+  font-size: 30px;
+}
+
+
+}
+
+/********** Super extra small devices Only :-)  **********/
+@media (min-width: 320px) and (max-width: 479px) {
+
+
+.title-head {
+  font-size: 25px;
+
+}
+
+
+
+
+}
+
+
+
+
+
+
+
+
+

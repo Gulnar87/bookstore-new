@@ -1,0 +1,104 @@
+<carousel>
+ 
+    
+
+  <slide class="slide-item">
+
+    <img class="" src="https://www.vikingrivercruises.co.uk/images/1600x400-bookclub-header-clock_tcm23-62702.jpg" alt="first slide" class="img-fluid">
+    <div class="carousel-caption d-none d-md-block">
+      <h3> So many books, so little time!</h3>
+      <p> Top destination for anyone who wants to express the love for books! </p>
+    </div>
+       <div class="overlay text-center"></div>
+  </slide>
+  <slide class="slide-item">
+    <img src="http://www.bibblib.org/wp-content/uploads/2014/01/library1.jpg" class="img-fluid">
+    <div class="carousel-caption d-none d-md-block">
+      <h3>  The book you don’t read won’t help!</h3>
+      <p> You can’t buy happiness, but you can buy books and that’s kind of the same thing!</p>
+    </div>
+     <div class="overlay text-center"></div>
+  </slide>
+  <slide class="slide-item">
+    <img src="https://ucpa.ucsd.edu/images/work/_standard/geisel-wmi.jpg" alt="third slide" class="img-fluid">
+    <div class="carousel-caption d-none d-md-block">
+      <h3> Start exploring our book section!</h3>
+      <p> Good friends, good books, and a sleepy conscience: this is the ideal life!</p>
+    </div>
+       <div class="overlay text-center"></div>
+  </slide>
+
+</carousel>
+
+
+<!--   <ngb-carousel>
+  <ng-template ngbSlide>
+   
+    <img src="https://www.vikingrivercruises.co.uk/images/1600x400-bookclub-header-clock_tcm23-62702.jpg">
+    <div class="carousel-caption">
+      <h3>First slide label</h3>
+      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <img src="http://www.bibblib.org/wp-content/uploads/2014/01/library1.jpg" alt="Random second slide" class="img-fluid">
+    <div class="carousel-caption">
+      <h3>Second slide label</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <img src="https://ucpa.ucsd.edu/images/work/_standard/geisel-wmi.jpg" alt="Random third slide" class="img-fluid">
+    <div class="carousel-caption">
+      <h3>Third slide label</h3>
+      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+    </div>
+
+  </ng-template>
+</ngb-carousel>
+   -->
+
+  <div class="row swip-row" >
+    
+    <div class="alert alert-success col-12 mt-4 text-center" role="alert" *ngIf="authService.signoutMessage"> 
+      <fa-icon [icon]="faCheckCircle"></fa-icon> You've successfully logged out. Come back soon! 
+    </div>
+    <div class="alert alert-success col-12 mt-4 text-center" role="alert" *ngIf="authService.signinMessage && authService.user | async as user"> 
+      <fa-icon [icon]="faCheckCircle"></fa-icon> Welcome back, {{ user.displayName }}!
+    </div>
+
+
+  <div  class="swiper-container" [swiper]="config" [(index)]="index"> 
+    <div class="row section-title">
+  <div class="col-12 title-head">
+    <div class="row">
+      <div class="col-8"> <h5 class="font-weight-bold "> Recent Books </h5></div>
+      <div class="col-4">   <a routerLink="/books" class="float-right"> See All </a></div>
+    </div>
+  </div>
+</div>
+
+
+     <div class="swiper-wrapper">
+       <app-book-item class="swiper-slide col-swiper col-lg-3 col-md-4 col-sm-6 col-12" 
+      *ngFor="let bookEl of books; let i = index"
+      [book]="bookEl"
+      [index]="bookEl.id"> 
+    </app-book-item>
+
+     </div>
+
+    <div class="swiper-pagination"></div>     
+</div>
+
+
+   <div class="swiper-button-prev swiper-button-black" [hidden]="config.navigation === false"></div>
+<div class="swiper-button-next swiper-button-black" [hidden]="config.navigation === false"></div>  
+
+ </div>
+
+
+
+
+
+

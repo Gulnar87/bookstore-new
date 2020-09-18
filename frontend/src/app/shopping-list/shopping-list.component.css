@@ -1,0 +1,241 @@
+.card {
+  margin-top: 1%;
+  margin-bottom: 1%;
+/*  padding: 2px;*/
+
+}
+
+.panel-row {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.card-img {
+  width: 100%;
+}
+
+
+.a-icon-text-separator, .a-text-separator {
+    display: inline-block;
+    margin: -2px .67375em 0;
+    width: 1px;
+    background-color: #7e57c2;
+    line-height: 0;
+    height: 14px;
+    vertical-align: middle;
+}
+
+.list-inline-item:hover {
+  color: #311b92;
+  font-size: 18px;
+
+}
+
+.price {
+  color: #ff3547;
+}
+
+.price span {
+  font-size:  30px; 
+  padding-right: 10px;
+   
+}
+
+.price fa-icon {
+  font-size: 20px;
+}
+
+
+.title-head {
+  font-size: 50px;
+} 
+
+/********** Extra Large devices only **********/
+@media (min-width: 1200px) {
+
+
+}
+
+
+
+/********** Large devices only **********/
+@media (min-width: 992px) and (max-width: 1199px) {
+
+
+}
+     
+
+/********** Medium devices only **********/
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+.price  {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.col-img {
+
+  padding-right: 0;
+}
+
+
+.price span {
+  font-size:  20px; 
+  padding-right: 5px;
+   
+
+}
+
+.price fa-icon {
+  font-size: 15px;
+}
+
+
+}
+
+
+
+/********** Small devices only **********/
+@media (min-width: 576px) and (max-width: 767px) {
+
+.col-img {
+
+  padding-right: 0;
+}
+
+.card-title{
+  font-size: 18px;
+}
+
+
+.price span {
+  font-size:  18px; 
+  padding-right: 2px;
+   
+
+}
+
+.price fa-icon {
+  font-size: 13px;
+}
+
+.price  {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.title-head {
+  font-size: 40px;
+}
+
+
+}
+
+
+
+/********** Extra Small Devices Only **********/
+@media (min-width: 480px) and  (max-width: 575px) {
+
+   .card-img {
+    width: 40%;
+
+  }
+
+  .panel-row {
+    text-align: center;
+  }
+
+  .row-text {
+    text-align: center;
+
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .card {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.list-inline-item {
+  padding-top: 15px;
+}
+
+.price {
+  padding-bottom: 0;
+
+}
+
+.title-head {
+  font-size: 30px;
+}
+
+  
+
+}
+
+
+
+/********** Super extra small devices Only :-)  **********/
+@media (min-width: 320px) and (max-width: 479px) {
+
+.card-img {
+    width: 60%;
+
+  }
+
+  .panel-row {
+    text-align: center;
+  }
+
+  .row-text {
+    text-align: center;
+
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .card {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.list-inline-item {
+  padding-top: 5px;
+}
+
+.price {
+  padding-bottom: 0;
+
+}
+
+.price span {
+  font-size:  20px; 
+  
+
+}
+
+.price fa-icon {
+  font-size: 15px;
+}
+
+h4.card-title{
+  font-size: 16px;
+}
+
+h5.card-title {
+  font-size: 14px;
+}
+
+.title-head {
+  font-size: 25px;
+}
+
+}
+
+
