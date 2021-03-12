@@ -7,10 +7,10 @@
            </a>
 		   <h3 class="login-title text-center"> 
              Login </h3>
-		    <form (ngSubmit)="onSignin()" #f="ngForm" class="px-xl-5">
+		    <form #f="ngForm" class="px-xl-5">
                 <div class="form-group">
-                    <div class="alert alert-danger" role="alert" *ngIf="this.authService.signinError"><fa-icon [icon]="faTimesCircle"></fa-icon> Wrong email or password. Please try again!
-                    </div>
+                    <!-- <div class="alert alert-danger" role="alert" *ngIf="this.authService.signinError"><fa-icon [icon]="faTimesCircle"></fa-icon> Wrong email or password. Please try again!
+                    </div> -->
             	    <label for="email"> 
                         <fa-icon [icon]="faAt"></fa-icon> Email 
                     </label> 
@@ -40,7 +40,7 @@
                      ngModel 
                      required 
                      #password="ngModel" 
-                     pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{6,}$"
+                  
                      > 
             	    <small style="color: #d87d15;" class="form-text" 
                     *ngIf="!password.valid && password.touched"> Please provide a password!</small>
@@ -51,7 +51,7 @@
                     <input type="checkbox" class="form-check-input" id="check">
                     <label class="form-check-label" for="check"> Remember password</label>
                 </div>
-                <button type="submit" class="btn btn-warning btn-block" [disabled]="!f.valid" > Log In </button>  
+                <button type="submit" class="btn btn-warning btn-block" (click)="login()"  > Log In </button>  
                  <hr class="hr-text" data-content="or"> 
 		    </form>
             <div class="px-xl-5">

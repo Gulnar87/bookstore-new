@@ -7,7 +7,7 @@
           book<span>S</span>tore
          </a>
 			<h3 class="text-center login-title"> Create an Account</h3>
-		   <form (ngSubmit)="onSignup()" #f="ngForm" class="px-xl-5">
+		   <form (ngSubmit)="onSignup()" #registerForm="ngForm" class="px-xl-5">
 			   <div class="form-group"> 
           <div class="alert alert-warning" role="alert" *ngIf="this.authService.signupError"><fa-icon [icon]="faExclamationTriangle"></fa-icon>The email address is already in use by another account!
           </div>
@@ -16,6 +16,7 @@
                 class="form-control" 
                 id="name" 
                 placeholder="" 
+                [(ngModel)]="user.fullName" 
                 name="name" 
                 ngModel 
                 required 
@@ -30,8 +31,9 @@
             	<input type="email"
                  class="form-control" 
                  id="email"  placeholder= "" 
-                 ngModel 
+                  
                  name="email" 
+                 [(ngModel)]="user.emailAddress" 
                  required 
                  email 
                  #email="ngModel"> 
@@ -40,6 +42,36 @@
                 *ngIf="!email.valid && email.touched"> Please provide a valid email address!
                </small>
             </div>
+
+            <div class="form-group">
+            	<label for="city"> <fa-icon [icon]="faAt"></fa-icon> City <span> * </span> </label> 
+            	<input type="text"
+                 class="form-control" 
+                 id="city"  placeholder= "" 
+                  
+                 name="city" 
+                 [(ngModel)]="user.city" 
+                  
+          
+                 #city="ngModel"> 
+            
+            </div>
+
+            <div class="form-group">
+            	<label for="phoneNumber"> <fa-icon [icon]="faAt"></fa-icon> phoneNumber <span> * </span> </label> 
+            	<input type="number"
+                 class="form-control" 
+                 id="phoneNumber"  placeholder= "" 
+                  
+                 name="phoneNumber" 
+                 [(ngModel)]="user.phoneNumber" 
+                  
+          
+                 #phoneNumber="ngModel"> 
+            
+            </div>
+
+
             <div class="form-group"> 
             	<label for="password"> <fa-icon [icon]="faAt"></fa-icon>Password <span> * </span></label>
             	   <input type="password" 
@@ -47,7 +79,8 @@
                     id="password" 
                     placeholder="" 
                     name="password" 
-                    ngModel 
+                    [(ngModel)]="user.password" 
+                     
                     required 
                     #password="ngModel" 
                     pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{6,}$"> 
@@ -59,7 +92,7 @@
                    *ngIf="password.errors?.pattern" > Complexity requirement not met. Length should have a minimum of 6 characters and include 1 lowercase, 1 uppercase, and 1 number! 
                   </small>    
             </div>
-            <div class="form-group"> 
+            <!-- <div class="form-group"> 
               <label for="image">  <fa-icon [icon]="faImage"></fa-icon> Add photo URL </label>
                  <input 
                     type="text" 
@@ -68,8 +101,8 @@
                     name="imagePath" 
                     ngModel 
                     #imagePath> 
-            </div>
-            <button type="submit" class="btn btn-warning btn-block" [disabled]="!f.valid"> Sign Up </button>
+            </div> -->
+            <button type="submit" class="btn btn-warning btn-block" [disabled]="!registerForm.valid"> Sign Up </button>
             <hr> 
 		   </form>
 	     

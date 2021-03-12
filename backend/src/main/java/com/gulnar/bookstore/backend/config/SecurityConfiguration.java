@@ -1,8 +1,5 @@
 package com.gulnar.bookstore.backend.config;
 
-import nl.eonics.jigler.security.AuthoritiesConstants;
-import nl.eonics.jigler.security.jwt.JWTConfigurer;
-import nl.eonics.jigler.security.jwt.TokenProvider;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.filter.CorsFilter;
+
 import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
 
 import javax.annotation.PostConstruct;
@@ -32,20 +29,20 @@ import javax.annotation.PostConstruct;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
-
+//
     private final UserDetailsService userDetailsService;
+//
+//    private final TokenProvider tokenProvider;
 
-    private final TokenProvider tokenProvider;
 
-    private final CorsFilter corsFilter;
 
     private final SecurityProblemSupport problemSupport;
 
-    public SecurityConfiguration(AuthenticationManagerBuilder authenticationManagerBuilder, UserDetailsService userDetailsService, TokenProvider tokenProvider, CorsFilter corsFilter, SecurityProblemSupport problemSupport) {
+    public SecurityConfiguration(AuthenticationManagerBuilder authenticationManagerBuilder, UserDetailsService userDetailsService, SecurityProblemSupport problemSupport) {
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.userDetailsService = userDetailsService;
-        this.tokenProvider = tokenProvider;
-        this.corsFilter = corsFilter;
+//        this.tokenProvider = tokenProvider;
+
         this.problemSupport = problemSupport;
     }
 
@@ -88,7 +85,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
             .csrf()
             .disable()
-            .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
             .exceptionHandling()
             .authenticationEntryPoint(problemSupport)
             .accessDeniedHandler(problemSupport)
@@ -101,45 +97,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
             .authorizeRequests()
-            .antMatchers("/api/register").permitAll()
-            .antMatchers("/sitemap.xml").permitAll()
-            .antMatchers("/details.css").permitAll()
-            .antMatchers("/vacancy/**").permitAll()
-            .antMatchers("/api/user-types").permitAll()
-            .antMatchers("/api/activate").permitAll()
-            .antMatchers("/api/authenticate").permitAll()
-            .antMatchers("/api/account/reset-password/init").permitAll()
-            .antMatchers("/api/account/reset-password/finish").permitAll()
-            .antMatchers("/webresources/xml/**").permitAll()
-            .antMatchers("/webresources/subscriptions/convert").permitAll()
-            .antMatchers("/webresources/experience-levels/").permitAll()
-            .antMatchers("/webresources/vacancy-features/").permitAll()
-            .antMatchers("/webresources/vacancy-branches/").permitAll()
-            .antMatchers("/webresources/vacancy-types/").permitAll()
-            .antMatchers("/webresources/education-levels/").permitAll()
-            .antMatchers("/webresources/vacancies/search").permitAll()
-            .antMatchers("/webresources/vacancies/filtered/**").permitAll()
-            .antMatchers("/webresources/vacancies/details/**").permitAll()
-            .antMatchers("/webresources/vacancies/similar/**").permitAll()
-            .antMatchers("/webresources/companies/company-name/**").permitAll()
-            .antMatchers("/webresources/companies/user-ids/**").permitAll()
-            .antMatchers("/webresources/subscriptions/no-account/**").permitAll()
-            .antMatchers("/webresources/subscriptions/unsubscribe/**").permitAll()
-            .antMatchers("/webresources/vacancy-applications/info-without-application").permitAll()
-            .antMatchers("/webresources/icons/").permitAll()
-            .antMatchers("/api/auth/kc/callback").permitAll()
-            .antMatchers("/api/auth/kc/logout").permitAll()
-            .antMatchers("/api/auth/kc/jwt").permitAll()
-            .antMatchers("/webresources/**").authenticated()
+            .antMatchers("/api/register").permitAll().antMatchers("/api/authenticate").permitAll()
+            .antMatchers("/webresources/book-list").permitAll()
+           .antMatchers("/webresources/book-list/add-book").authenticated()
             .antMatchers("/api/account/**").authenticated()
-            .antMatchers("/api/vacancies").permitAll()
-            .antMatchers("/api/**").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers("/api/**").hasAuthority("ADMIN")
         .and()
-            .apply(securityConfigurerAdapter());
+            .httpBasic();
 
     }
 
-    private JWTConfigurer securityConfigurerAdapter() {
-        return new JWTConfigurer(tokenProvider);
-    }
+//    private JWTConfigurer securityConfigurerAdapter() {
+//        return new JWTConfigurer(tokenProvider);
+//    }
 }

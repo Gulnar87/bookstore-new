@@ -18,6 +18,8 @@ import { BarRatingModule } from "ngx-bar-rating";
 import { BooksModule } from '../books/books.module';
 import { FilterService } from '../shared/filter-service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../interceptors/auth.interceptor';
 
 
 
@@ -75,7 +77,10 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 	   {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG
-    }
+	}, 
+	{
+		provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
+	}
 	],
 
 	// schemas: [ NO_ERRORS_SCHEMA ]

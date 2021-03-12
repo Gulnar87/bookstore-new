@@ -1,9 +1,10 @@
 package com.gulnar.bookstore.backend.service;
 
-import nl.eonics.jigler.domain.TokenMapping;
-import nl.eonics.jigler.repository.TokenMappingRepository;
-import nl.eonics.jigler.service.dto.TokenMappingDTO;
-import nl.eonics.jigler.service.mapper.TokenMappingMapper;
+
+import com.gulnar.bookstore.backend.domain.TokenMapping;
+import com.gulnar.bookstore.backend.repository.TokenMappingRepository;
+import com.gulnar.bookstore.backend.service.dto.TokenMappingDTO;
+import com.gulnar.bookstore.backend.service.mapper.TokenMappingMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

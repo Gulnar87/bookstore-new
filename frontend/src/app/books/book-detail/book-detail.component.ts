@@ -37,23 +37,14 @@ export class BookDetailComponent implements OnInit {
 
 
   ngOnInit() {
-    // fontawesome.library.add(faShoppingCart, faCaretDown, faCaretUp);
 
     this.route.params
       .subscribe((params: Params) => {
         this.id = params['id'];
-
-             this.bookService.getBookDetails(this.id).subscribe(book=> {
-
+        this.bookService.getBook(this.id).subscribe(book=> {
                this.book = book
-              }
-              )
-            ;
-       
-                 // this.book = this.slService.getBook(this.id);
+              });
       });
-
-
   }
 
 
@@ -71,24 +62,24 @@ export class BookDetailComponent implements OnInit {
 
     onDeleteBook() {
     this.bookService.deleteBook(this.id);
-     this.onSaveBooks()
+    //  this.onSaveBooks()
     this.router.navigate(['/books']);
 
   }
 
 
- onSaveBooks(){
-  this.dataStorageService.storeBooks()
+//  onSaveBooks(){
+//   this.dataStorageService.storeBooks()
    
-  .subscribe(
-    (response: Response) => {
-      console.log(response);
-       }, (error) => console.log(error)
-  );
+//   .subscribe(
+//     (response: Response) => {
+//       console.log(response);
+//        }, (error) => console.log(error)
+//   );
 
 
   
-  }
+//   }
 
 onSaveShopping(){
 

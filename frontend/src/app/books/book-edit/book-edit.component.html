@@ -51,27 +51,20 @@
         </div>
         <div class="row">
           <label for="phone" class="col-8 col-md-4 col-lg-2 col-form-label">Phone <span> * </span></label>
-          <div class="form-group col-sm-9 col-md-6 col-lg-4" formArrayName="phone"> 
-            <div class="form-group"*ngFor="let otherCont of getControls1(); let i =index;">
-              <input [ngClass]="{'is-invalid': submitted && f.phone.at(0).invalid, 'is-valid': submitted && f.phone.at(0).valid}"
+          <div class="form-group col-sm-9 col-md-6 col-lg-4" > 
+            <div class="form-group" >
+              <input [ngClass]="{'is-invalid': submitted && f.phone.invalid, 'is-valid': submitted && f.phone.valid}"
               type="number" 
               class="form-control" 
               id="phone" 
-              [formControlName]="i"
-              placeholder="">
-              <div *ngIf="submitted && f.phone.at(0).errors" class="invalid-feedback">
-                <div *ngIf="f.phone.at(0).errors.required "><fa-icon [icon]="faExclamationTriangle"></fa-icon>Phone number is required! </div>
+              formControlName="phone"
+              placeholder="phone">
+              <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                <div *ngIf="f.phone.errors.required "><fa-icon [icon]="faExclamationTriangle"></fa-icon>Phone number is required! </div>
               </div>  
             </div>
           </div>
-          <div class="form-group col-3 col-md-2 col-lg-4" style="padding: 6px">  
-            <span id="popoverPhone" popover="Add additional phone number." 
-             (click)="onAddPhone()" 
-             style="color:#494784"
-             triggers="mouseenter:mouseleave" placement="right"> 
-              <fa-icon [icon]="faPlusCircle" style="font-size: 20px"></fa-icon>
-            </span>   
-          </div>
+  
         </div>
         <div class="row">
           <label for="city" class="col-8 col-md-4 col-lg-2 col-form-label"> City <span> * </span>
@@ -207,7 +200,7 @@
             </div>
           </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <label for="other" class="col-8 col-md-4 col-lg-2 col-form-label">  </label>
           <div class="form-group col-sm-11 col-md-8 col-lg-6" formArrayName="other"> 
             <a class="btn btn-link waves-effect btn-sm" (click)="onAddField()"> Add a new field
@@ -223,7 +216,7 @@
                </textarea> 
             </div> 
           </div>
-        </div>
+        </div> -->
         <div class="row">
           <div class="form-group col-md-8 col-lg-6" >
             <div class="form-check">

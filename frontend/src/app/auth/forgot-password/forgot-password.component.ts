@@ -23,12 +23,12 @@ faCheckCircle = faCheckCircle;
 
   sendResetEmail() {
   
-    this.authService.resetPassword(this.forgotPasswordForm.value.email)
-     // .then(() => {this.resetPassword = true})
-     //  .catch((error) => {
-     //    console.log(error)
+    // this.authService.resetPassword(this.forgotPasswordForm.value.email)
+    //  .then(() => {this.resetPassword = true})
+    //   .catch((error) => {
+    //     console.log(error)
         
-     //  })    
+    //   })    
   }
 
 

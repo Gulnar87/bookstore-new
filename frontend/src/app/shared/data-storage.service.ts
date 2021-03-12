@@ -15,11 +15,7 @@ export class DataStorageService {
 		        private authService: AuthService,
 		        protected httpClient: HttpClient){}
 
-	  get(): Observable<Book[]> {
-		return this.httpClient.get<Book[]>(environment.books);
-		
-	}
-
+	  
 
 
      getShopList(): Observable<Book[]> {
@@ -27,18 +23,8 @@ export class DataStorageService {
     }
 
 
-	storeBooks(){
-
-		const token = this.authService.getToken();
-		// const headers = new Headers({'Content-Type': 'application/json'});
-		return this.httpClient.put('https://book-shop-app.firebaseio.com/books.json', 
-			this.bookService.getBooks());
-
-	
-	}
-
 	storeShoppinglist(){
-	    const token = this.authService.getToken();
+	    // const token = this.authService.getToken();
 		return this.httpClient.put('https://book-shop-app.firebaseio.com/shoppingList.json', 
 			this.shoppinglist.getBooks());
 

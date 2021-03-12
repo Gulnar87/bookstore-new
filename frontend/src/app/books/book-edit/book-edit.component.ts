@@ -18,7 +18,7 @@ import { faExclamationTriangle, faPlusCircle, faInfoCircle } from '@fortawesome/
 export class BookEditComponent implements OnInit{
 	
   subscription: Subscription; 
-  bookForm: FormGroup;
+  public bookForm: FormGroup;
   faExclamationTriangle = faExclamationTriangle;
   faPlusCircle = faPlusCircle;
   faInfoCircle = faInfoCircle;
@@ -31,26 +31,38 @@ export class BookEditComponent implements OnInit{
   editMode = false;
   imageSrc: any;
   forbiddenUsernames = ['Mussolini', 'Osama Bin Laden', 'Hitler'];
+
+  public book: Book = new Book();
 	
 
   constructor(private route: ActivatedRoute,
   	          private bookService: BookService,
-              private router: Router,
-              private dataStorageService: DataStorageService) { }
+              private router: Router) { }
 
   ngOnInit() {
 
-  	this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.id = +params['id'];
-          this.editMode = params['id'] != null;
-          this.initForm();
+  	this.route.paramMap.subscribe(
+        (params) => {
+          if (params.get('id')) {
+            console.log("param")
+            this.id = +params.get('id')
+            this.bookService.getBook(this.id).subscribe(book=> {
+          
+              this.book = book;
+              this.initForm();
+         
+              // this.editMode = params['id'] != null;
+            })
+
+          } else {
+            console.log("empty")
+            // this.editMode = params['id'] != null;
+            this.initForm();
+          }
+
         }
       );
-
   // fontawesome.library.add(faUpload);
-
   }
 
   onSubmit(){
@@ -59,64 +71,66 @@ export class BookEditComponent implements OnInit{
      
   if(this.editMode && this.bookForm.valid){
       this.bookService.updateBook(this.id, this.bookForm.value)
-      this.onSaveBooks()
+   
+      this.onSaveBooks(this.bookForm.value)
       this.onCancel();
-    } else if (this.bookForm.valid) {
+    } 
     
-       this.bookService.addBook(this.bookForm.value);
-        this.onSaveBooks()
-
-       this.onCancel();
+    else if (this.bookForm.valid) {
+    
+      this.bookService.addBook(this.bookForm.value);
+      this.onSaveBooks(this.bookForm.value)
+      this.onCancel();
     }
 
      console.log(this.bookForm.value)  
 
   }
 
+  onSaveBooks(book){
+    this.bookService.createBook(book)
+    .subscribe(
+      (response) => {
+        console.log(response);
+         }, (error) => console.log(error)
+    );
+    
+    }
+
   onCancel(){
     this.router.navigate(['../'], {relativeTo: this.route})
   }
 
-  private initForm(){
-  	let name = '';
-  	let email = '';
-  	let phone: number;
-  	let city = '';
-    let bookTitle = '';
-  	let bookAuthor = '';
-  	let bookDescription = '';
-  	let bookImagePath = '';
-  	let bookPrice: number;
-  	let termsCondt = '';
-
-  	if(this.editMode){
-  		const book = this.bookService.getBook(this.id);
-  		   name = book.user.fullName;
-  	     email = book.user.emailAddress;
-  	     phone = book.user.phoneNumber;
-  	     city = book.user.city;
-         bookTitle = book.title;
-  	     bookAuthor = book.author;
-  	     bookDescription = book.description;
-  	     bookImagePath = book.imagePath;
-  	     bookPrice = book.price;
-  	     termsCondt = '';
-  	}
+  private initForm(): void{
 
   	  this.bookForm = new FormGroup({
-      'name': new FormControl(name, [Validators.required, this.forbiddenNames.bind(this)]),
-      'email': new FormControl(email, [Validators.required, Validators.email]),
-      'city': new FormControl(city, Validators.required),
-      'title': new FormControl(bookTitle, Validators.required),
-      'author': new FormControl(bookAuthor, Validators.required),
-      'description': new FormControl(bookDescription),
-      'imagePath': new FormControl(bookImagePath, Validators.required),
-      'price': new FormControl(bookPrice, Validators.required),
-      'terms': new FormControl(termsCondt, Validators.required),
-      'other': new FormArray([]),
-      'phone': new FormArray([ new FormControl(phone, Validators.required)])
+      name: new FormControl(this.book.user ? this.book.user.fullName : '', [Validators.required, this.forbiddenNames.bind(this)]),
+      email: new FormControl(this.book.user ? this.book.user.emailAddress : '', [Validators.required, Validators.email]),
+      city: new FormControl(this.book.user ? this.book.user.city : '', Validators.required),
+      title: new FormControl(this.book.title, Validators.required),
+      author: new FormControl(this.book.author, Validators.required),
+      description: new FormControl(this.book.description),
+      imagePath: new FormControl(this.book.imagePath, Validators.required),
+      price: new FormControl(this.book.price, Validators.required),
+      terms: new FormControl('', Validators.required),
+      phone: new FormControl(this.book.user ? this.book.user.phoneNumber : null, Validators.required)
+      // other: new FormArray([]),
+
     });
   }
+
+
+  // benefits: this.fb.array(
+  //   this.vacancy.jobPerks && this.vacancy.jobPerks.length > 0 ?
+  //     [...(this.vacancy.jobPerks).map(jp => this.fb.group({
+  //       id: jp.id,
+  //       description: [jp.description, Validators.maxLength(75)],
+  //     }))] :
+  //     [...([new JobPerk(undefined)]).map(jp => this.fb.group({
+  //       id: jp.id,
+  //       description: [jp.description, Validators.maxLength(75)],
+  //     }))]
+  // ),
 
   forbiddenNames(control: FormControl): {[s: string]: boolean} {
     if(this.forbiddenUsernames.indexOf(control.value) !== -1){
@@ -154,23 +168,10 @@ onAddPhone(){
     return (<FormArray>this.bookForm.get('other')).controls;
   }
 
-   getControls1() {
-    return (<FormArray>this.bookForm.get('phone')).controls;
-  }
+  //  getControls1() {
+  //   return (<FormArray>this.bookForm.get('phone')).controls;
+  // }
 
-
-  onSaveBooks(){
-  this.dataStorageService.storeBooks()
-   
-  .subscribe(
-    (response) => {
-      console.log(response);
-       }, (error) => console.log(error)
-  );
-
-
-  
-  }
 
 }
 

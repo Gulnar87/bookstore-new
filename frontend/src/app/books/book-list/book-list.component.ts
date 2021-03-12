@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Book } from '../../shared/book.model';
 import { BookService } from '../book.service';
 import { FilterService } from '../../shared/filter-service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 
@@ -23,28 +24,27 @@ export class BookListComponent implements OnInit, OnDestroy  {
 
 
   constructor(private bookService: BookService,
-              private router: Router,
-              private route: ActivatedRoute,
-              public filterServ: FilterService,
-             
-              
+              public filterServ: FilterService, 
               ) { }
 
   ngOnInit() {
-  	this.subscription = this.bookService.booksChanged
-  	.subscribe(
+
+    this.bookService.getBooks()
+    .subscribe(
         (books: Book[]) => {
-          this.books = books;
-        }
-      );
-      
-      this.books = this.bookService.getBooks();
+            this.books = books
+             // this.slService.setBooks(this.books);
+            //  this.bookService.setBooks(this.books);
+        },
+        (error: HttpErrorResponse) => console.log(error)
+    );
+
  
 
   }
 
   ngOnDestroy(){
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
  
  

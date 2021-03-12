@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Book {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name="title")
@@ -29,8 +29,7 @@ public class Book {
     @Column(name="price")
     private Double price;
 
-    @ManyToOne(optional = false)
-    @NotNull
+    @ManyToOne
     @JsonIgnoreProperties("")
     private User user;
 

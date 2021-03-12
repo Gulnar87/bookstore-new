@@ -9,6 +9,7 @@ import { BookService } from '../../books/book.service';
 import { AuthService } from '../../auth/auth.service';
 import { FilterService } from '../../shared/filter-service';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 
@@ -33,28 +34,27 @@ export class HomeComponent implements OnInit{
  @ViewChild(SwiperComponent) componentRef?: SwiperComponent;
  @ViewChild(SwiperDirective) directiveRef?: SwiperDirective;
 
-    // books: Book[];
 
  subscription: Subscription;
- public books: Book[];
+ public books: Book[] ;
      
     @Input() index: number;
  
 
-
     ngOnInit() {
 
-
-  this.subscription = this.bookService.booksChanged
-    .subscribe(
-        (books: Book[]) => {
-          this.books = books;
-        }
+      this.bookService.getBooks()
+      .subscribe(
+          (books: Book[]) => {
+              this.books = books
+               // this.slService.setBooks(this.books);
+              //  this.bookService.setBooks(this.books);
+          },
+          (error: HttpErrorResponse) => console.log(error)
       );
-      
-      this.books = this.bookService.getBooks();
     
   }
+
 
 
    public config: SwiperConfigInterface = {

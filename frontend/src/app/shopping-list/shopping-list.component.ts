@@ -47,59 +47,59 @@ total: number;
    ngOnInit() {
 
  
-    this.books = this.slService.getBooks();
-     this.subscription = this.slService.booksChanged
-      .subscribe(
-        (books: Book[]) => {
-          this.books = books;
+    // this.books = this.slService.getBooks();
+    //  this.subscription = this.slService.booksChanged
+    //   .subscribe(
+    //     (books: Book[]) => {
+    //       this.books = books;
 
 
-        }
-      );
+    //     }
+    //   );
 
 
 
-      this.slService.startedEditing
-      .subscribe(
-        (index: number) => {
-          this.editedItemIndex = index;    
+      // this.slService.startedEditing
+      // .subscribe(
+      //   (index: number) => {
+      //     this.editedItemIndex = index;    
 
         
-        }
-        );
+      //   }
+      //   );
 
     
-       this.slService.calculateTotal
-        .subscribe(
-         (total) =>{
-         this.total = total;
+  //      this.slService.calculateTotal
+  //       .subscribe(
+  //        (total) =>{
+  //        this.total = total;
 
  
-  });
+  // });
 
 
-this.slService.calculateTotalPrice();
- console.log('this total cost ' + this.total);
+// this.slService.calculateTotalPrice();
+//  console.log('this total cost ' + this.total);
 
    }
 
 
  onSaveShopping(){
- this.dataStorageService.storeShoppinglist()
-  .subscribe(
-    (response: Response) => {
-      console.log(response);
-       }, (error) => console.log(error)
-  );
+//  this.dataStorageService.storeShoppinglist()
+//   .subscribe(
+//     (response: Response) => {
+//       console.log(response);
+//        }, (error) => console.log(error)
+//   );
 
 }
 
 
   onRemove(index: number){
   
-     this.slService.deleteBook(index);  
-     this. onSaveShopping()
-      // console.log('this total cost ' + this.total);
+    //  this.slService.deleteBook(index);  
+    //  this. onSaveShopping()
+    //   // console.log('this total cost ' + this.total);
 
 
    }

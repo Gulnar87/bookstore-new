@@ -28,27 +28,12 @@ book: Book;
 books: Book[];
 shopbooks: Book[];
 
-  constructor(private slService: ShoppingListService,   
-              private bookService: BookService,
-        
-              private dataStorageService: DataStorageService ) { 
+  constructor(private slService: ShoppingListService,    
+              private dataStorageService: DataStorageService) { 
  }
 
   ngOnInit() {
        
-          this.dataStorageService.get()
-            .subscribe(
-                (response: Book[]) => {
-                  console.log(response)
-                    this.books = response
-                     // this.slService.setBooks(this.books);
-                     this.bookService.setBooks(this.books);
-                    console.log(response)
-                 
-                },
-                (error: HttpErrorResponse) => console.log(error)
-            );
-
              this.dataStorageService.getShopList()
             .subscribe(
                 (response: Book[]) => {

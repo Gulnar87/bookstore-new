@@ -4,9 +4,9 @@ import { Subscription } from 'rxjs';
 import { DataStorageService } from '../../shared/data-storage.service';
 import { ShoppingListService } from '../../shopping-list/shopping-list.service';
 import { Book } from '../../shared/book.model';
-import { AuthService } from '../../auth/auth.service';
 import { faSearch, faPaste, faBook } from '@fortawesome/free-solid-svg-icons';
 import { FilterService } from '../../shared/filter-service';
+import { AuthenticationService } from 'src/app/service/auth.servise';
 
 
 
@@ -17,12 +17,11 @@ import { FilterService } from '../../shared/filter-service';
 })
 export class HeaderComponent implements OnInit {
 
-isCollapsed = false; 
+ isCollapsed = false; 
 
-books: Book[];
+ books: Book[];
 
  subscription: Subscription; 
- // isCollapsed = false;
  id: number;
  book: Book; 
  total: number;
@@ -34,7 +33,7 @@ books: Book[];
 
   constructor(private dataStorageService: DataStorageService, 
               private slService: ShoppingListService,
-              public authService: AuthService,
+              public authService: AuthenticationService,
               private filter: FilterService
             
              ) {
@@ -86,7 +85,7 @@ onSaveData(){
 
  this.dataStorageService.storeShoppinglist()
   .subscribe(
-    (response: Response) => {
+    (response) => {
       console.log(response);
        }, (error) => console.log(error)
   );
@@ -103,8 +102,7 @@ onFetchData(){
 }
 
  onLogout() {
-    // this.authService.logout();
-    this.authService.signOut();
+    this.authService.logout();
   }
 
  
